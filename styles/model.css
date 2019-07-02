@@ -1,0 +1,234 @@
+body{
+	margin:0;
+
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 19px;
+	font-weight: 100;
+
+}
+b{
+	font-weight: bold;
+}
+h2{
+	font-size: 48px;
+	text-align: left;
+	border-bottom: 3px solid black;
+    padding-bottom: 0.25em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-weight: 100;
+    line-height: 1em;
+}
+
+/*****************
+CONTENT
+*****************/
+#content{
+	position: relative;
+    margin: 0 auto;
+    width: 1080px;
+}
+#model_container{
+	width:640px;
+	height:480px;
+	
+	position: fixed;
+	right: calc(50% - 540px);
+	top: 100px;
+}
+#model{
+	width:640px;
+	height:420px;
+
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;   
+
+	cursor: default;
+
+}
+#words{
+	width:400px;
+	padding-right: 40px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	/*position: absolute;
+	right: calc(50% + 100px);*/
+
+	text-align: justify;
+	line-height: 1.5em;
+}
+
+/*****************
+BUTTONS
+*****************/
+.button{
+	font-size:30px;
+	color: #227daa;
+	cursor: pointer;
+	font-weight: bold;
+	padding:10px;
+	padding-top: 13px;
+	border-radius: 10px;
+	border: 3px solid #227daa;
+	text-align: center;
+
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+
+}
+.button:hover{
+	color: #1da0e2;
+	border-color: #1da0e2;
+}
+
+
+/*****************
+FOOTER
+*****************/
+#footer{
+	position: relative;
+	width:100%;
+	height: 100%;
+	background: #222;
+}
+
+/*****************
+PARAMETER UI
+*****************/
+.edit_container{
+    padding: 10px;
+    border-left: 5px solid #000;
+}
+.edit_slider{
+	text-align: left;
+	font-size: 16px;
+	margin: 5px 0;
+	position: relative;
+}
+.edit_slider div#label{
+	height:1.5em;
+}
+.edit_slider input{
+	width:100%;
+}
+.edit_slider span{
+	font-weight: bold;
+}
+.edit_slider svg#reset{
+
+	display:none;
+
+	cursor: pointer;
+
+    position: absolute;
+    left: -56px;
+    top: 3px;
+    width: 40px;
+    height: 40px;
+
+}
+
+/*****************
+SIMULATION UI
+*****************/
+#sim_start{
+
+    margin: 15px auto;
+    width:470px;
+    height: 60px;
+
+    /*border:5px solid #333;*/
+    background: #333;
+    border-radius: 15px;
+    color:#fff;
+    text-align: center;
+
+    font-size: 35px;
+    line-height: 60px;
+
+    cursor: pointer;
+
+    opacity: 1;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+
+}
+#sim_start:hover{
+	opacity:0.8;
+}
+#sim_ui{
+	display: none;
+
+	position: relative;
+
+	margin: 7px;
+    margin-top: 15px;
+    width:626px;
+    height: 60px;
+}
+#sim_ui > div{
+	float: left;
+}
+#play_pause{
+	
+	border: 2px solid #000;
+
+	width:30px;
+	height:30px;
+
+	overflow: hidden;
+
+	margin-right: 10px;
+
+	padding: 10px;
+	font-size: 30px;
+	line-height: 0.8em;
+    text-align: center;
+    cursor: pointer;
+
+    opacity:0.3;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}
+#play_pause[play=true]{
+	background-image: url(pause.svg);
+}
+#play_pause[play=false]{
+	background-image: url(play.svg);
+}
+#play_pause:hover{
+	opacity:0.8;
+}
+/*#sim_ui_divider{
+	width:3px; height:100%;
+	border-left: 2px solid #ddd;
+	border-right: 2px solid #ddd;
+	margin-right:20px;
+}*/
+#sim_info{
+	width:560px;
+	font-size: 16px;
+}
+#sim_info > div{
+	position: relative;
+	height:18px;
+}
+#sim_info > div > div{
+	float:left;
+	width:150px;
+	height:16px;
+	text-align: right;
+}
+#sim_info > div > svg{
+	float:right;
+	width:400px;
+	height:16px;
+}

@@ -1,0 +1,300 @@
+<!doctype>
+<html>
+<head>
+	
+	<!-- Meta -->
+	<title>Stats Sim Story</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<!--link rel="icon" type="image/png" href="/favicon.png"-->
+
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="styles/model.css">
+
+</head>
+<body>
+
+	<div id="content">
+		<div id="model_container">
+			<svg id="model"></svg>
+			<div id="sim_start" onclick="Sim.isPlaying=true; updatePlayPause(); Sim.update(); changeSimUI();">
+				<b>START</b> THIS SIMULATION
+			</div>
+			<div id="sim_ui">
+				<div id="play_pause"></div>
+				<div id="sim_info">
+					<div id="stat_incarceration" style="color:#000">
+						<div style="letter-spacing: 0.6px;">incarceration rate:</div>
+						<svg></svg>
+					</div>
+					<div id="stat_unemployment" style="color:#b1e21d">
+						<div style="letter-spacing: 0.8px;">employment ratio:</div>
+						<svg></svg>
+					</div>
+					<div id="stat_college" style="color:#1da0e2">
+						<div style="letter-spacing: 0.5px;">adults w/ degrees:</div>
+						<svg></svg>
+					</div>
+					<div style="margin-top: 7px;color: #888;text-align: right;">
+						<b>note:</b> the sim needs to run for a minute before metrics can be shown.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="words">
+
+<!-- INTRODUCTION -->
+	
+<h2>
+Schools &amp; Prisons
+</h2>
+<div style="font-size:25px; text-align:right; position:relative; top:-15px;">[a very early prototype]</div>
+
+<p>
+The United States has 5% of the world's population,
+but 25% of the world's prisoners.
+That's, uh, kind of embarassing.
+</p>
+
+<p>
+But it's hard to see the full context of such a huge systemic problem.
+So, I've taken the national statistics on
+age, race, education, income, crime, etc...
+and made a simulation that <i>connects</i> all these factors together:
+</p>
+
+<p style="text-align:right; font-size:30px">
+<b>click start &rarr;</b>
+</p>
+
+<!--p>
+<div class="button" onclick="Sim.isPlaying=true; Sim.update();">
+START THE SIMULATION
+</div>
+</p-->
+
+<p>
+Every "person" in this simulation
+has their own life story,
+and carries their history with them.
+People with a black outline have a criminal record,
+and the squares they have (or don't have) are their high school/college diplomas.
+</p>
+<p>
+This simulation creates
+100 stories per minute.
+</p>
+
+<p style="text-align:right; font-size:30px; line-height:1.1em">
+<b>click any person to focus on their story &rarr;</b>
+</p>
+
+<p>
+By combining <b>systems, stories &amp; statistics</b>,
+maybe we can get a better idea on how to tackle our mass incarceration problem!
+This simulation will show us that 
+injustice is not the <i>cause</i> of a bad system,
+it's the <i>result</i>.
+</p>
+
+<p>
+<br><br>
+</p>
+
+
+<!-- INTRODUCTION -->
+	
+<h2>
+Inside The System
+</h2>
+
+<p>
+This simulation is based off <b>the real national statistics
+for low-income boys &amp; men.</b>
+(other demographics get caught up in the criminal justice system
+too, of course, but this group is the most at-risk)
+</p>
+
+<p>
+The statistics determine how likely a person is to move from one box to another.
+Here are those stats, with sources attached!
+You can also modify the given numbers/probabilities.
+This lets you challenge my assumptions, or use a different dataset...
+and for you to <b>make &amp; simulate your own policies!</b>
+</p>
+
+<p>
+(You see the metrics underneath the simulation?
+And the gray "range" bars on them?
+Those are the simulation's usual results, when you <i>don't</i> change the numbers.
+Those range bars are there for you to see what effect your "policy" has &mdash;
+if the metrics move out of those ranges, you've had an effect!)
+</p>
+
+<p>
+<b>TO-DO:</b><br>
+* stats for age, race, nonviolent crime<br>
+* link sources (mostly BJS.gov &amp; NCES.gov)
+</p>
+
+<p class="edit_container" color="#227daa">
+
+	For each year I'm in high school, I have...
+	<edit stat="high_school_dropout"
+		  label="a {% chance} of dropping out,">
+	</edit>
+	<edit stat="high_school_convicted"
+		  label="and a {% chance} of being incarcerated.">
+	</edit>
+
+	<br>
+	And if I graduate, I've got...
+	<edit stat="high_school_to_college"
+		  label="a {% chance} of going to college.">
+	</edit>
+
+</p>
+
+<p class="edit_container" color="#1da0e2">
+
+	For each year I'm in college, I have...
+	<edit stat="college_dropout"
+		  label="a {% chance} of dropping out,">
+	</edit>
+	<edit stat="college_convicted"
+		  label="and a {% chance} of being incarcerated.">
+	</edit>
+
+</p>
+
+<p class="edit_container" color="#88aa22">
+
+	My chances of getting a job depend on my level of education:
+	<edit stat="employment_degree_none"
+		  label="{% employment} with less than high school">
+	</edit>
+	<edit stat="employment_degree_high"
+		  label="{% employment} with a high school diploma">
+	</edit>
+	<edit stat="employment_degree_some_college"
+		  label="{% employment} with some college">
+	</edit>
+	<edit stat="employment_degree_bachelor"
+		  label="{% employment} with a Bachelor's or higher">
+	</edit>
+	But if I'm an ex-felon...
+	<edit stat="excon_factor_employed"
+		  label="that cuts my chances of employment by {%.}">
+	</edit>
+
+	<br>
+	Also, for each year I'm unemployed...
+	<edit stat="unemployed_gets_convicted"
+		  label="I have a {% chance} of being incarcerated.">
+	</edit>
+
+</p>
+
+<p class="edit_container" color="#b1e21d">
+
+	While I'm employed, each year I have...
+	<edit stat="laid_off"
+		  label="a {% chance} of getting laid off,">
+	</edit>
+	<edit stat="employed_convicted"
+		  label="and a {% chance} of getting incarcerated.">
+	</edit>
+
+</p>
+
+<p class="edit_container" color="#000">
+
+	If I go to prison...
+	<edit stat="prison_sentence"
+		  label="I'll get a { year sentence.}">
+	</edit>
+
+	<br>
+	And when/if I get out, my
+	chances of returning to prison are...
+	<edit stat="recidivism_1"
+		  label="{%} for my first year after release">
+	</edit>
+	<edit stat="recidivism_2"
+		  label="{%} for my second year after release">
+	</edit>
+	<edit stat="recidivism_3"
+		  label="{%} for my third year after release">
+	</edit>
+
+</p>
+
+<p>
+In tackling mass incarceration, or any big systemic problem,
+there is no silver bullet &mdash; and that's a good thing.
+That means, there are many, <i>many</i> ways to help,
+not just directly within policy or prisons,
+but also schools, businesses, and local communities.
+</p>
+
+<p>
+We're <i>all</i> part of the system, for better or worse.
+</p>
+
+<p>
+<br><br>
+</p>
+
+
+<!-- INTRODUCTION -->
+	
+<h2>
+What D'ya Think?
+</h2>
+
+<p>
+Everything here is super rough,
+but I just wanted to run a first draft by you!
+</p>
+
+<p>
+What did you think about it?
+What's missing, what should be taken out?
+What did you like most, what did you like least?
+And why?
+</p>
+
+<p>
+I don't just want people to "learn" about the topic,
+I want people to be able to actually <i>use</i> this thing:
+to evaluate/design policies,
+to use their own city's data,
+to figure out what one can <i>personally</i> do to change the system.
+</p>
+
+<p>
+So yeah, whatever feedback you gots will help a mega-tonne.
+Thank you so much! :)
+</p>
+
+
+		</div>
+	</div>
+
+</body>
+</html>
+
+<!-- External Libraries -->
+<script src="scripts/lib/snap.svg-min.js"></script>
+<script src="scripts/lib/stats.min.js"></script>
+
+<!-- Our Engine Code -->
+<script src="scripts/core/Person.js"></script>
+<script src="scripts/core/Stage.js"></script>
+<script src="scripts/core/Focus.js"></script>
+<script src="scripts/core/Stats.js"></script>
+<script src="scripts/core/Sim.js"></script>
+<script src="scripts/core/Controls.js"></script>
+
+<!-- Main Script -->
+<script src="scripts/main.js"></script>
